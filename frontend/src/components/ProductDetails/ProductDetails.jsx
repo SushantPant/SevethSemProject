@@ -198,19 +198,14 @@ const ProductDetails = () => {
                                     {/* <!-- price desc --> */}
 
                                     {/* <!-- banks offers --> */}
-                                    <p className="text-md font-medium">Available offers</p>
-                                    {Array(3).fill("").map((el, i) => (
-                                        <p className="text-sm flex items-center gap-1" key={i}>
-                                            <span className="text-primary-lightGreen"><LocalOfferIcon sx={{ fontSize: "20px" }} /></span>
-                                            <span className="font-medium ml-2">Bank Offer</span> 15% Instant discount on first ShopEase Pay Later order of 500 and above <Link className="text-primary-green font-medium" to="/">T&C</Link>
-                                        </p>
-                                    ))}
+                                    
+                                   
                                     {/* <!-- banks offers --> */}
 
                                     {/* <!-- warranty & brand --> */}
                                     <div className="flex gap-8 mt-2 items-center text-sm">
                                         <img draggable="false" className="w-20 h-8 p-0.5 border object-contain" src={product.brand?.logo.url} alt={product.brand && product.brand.name} />
-                                        <span>{product.warranty} Year Warranty <Link className="font-medium text-primary-green" to="/">Know More</Link></span>
+                                        <span>Best Before: {product.warranty}  Month(s)</span>
                                     </div>
                                     {/* <!-- warranty & brand --> */}
 
@@ -242,14 +237,12 @@ const ProductDetails = () => {
                                             <p className="text-gray-500 font-medium">Services</p>
                                             <ul className="flex flex-col gap-2">
                                                 <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-green"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span> {product.warranty} Year</p>
+                                                    <p className="flex items-center gap-3"><span className="text-primary-green"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span>Expires in {product.warranty} Month(s)</p>
                                                 </li>
                                                 <li>
                                                     <p className="flex items-center gap-3"><span className="text-primary-green"><CachedIcon sx={{ fontSize: "18px" }} /></span> 7 Days Replacement Policy</p>
                                                 </li>
-                                                <li>
-                                                    <p className="flex items-center gap-3"><span className="text-primary-green"><CurrencyRupeeIcon sx={{ fontSize: "18px" }} /></span> Cash on Delivery available</p>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                         {/* <!-- services details --> */}

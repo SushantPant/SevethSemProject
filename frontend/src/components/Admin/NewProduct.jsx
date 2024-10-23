@@ -246,7 +246,7 @@ const NewProduct = () => {
                             onChange={(e) => setStock(e.target.value)}
                         />
                         <TextField
-                            label="Warranty"
+                            label="Expires In"
                             type="number"
                             variant="outlined"
                             size="small"

@@ -40,7 +40,6 @@ import AboutUs from './components/pages/Aboutus';
 import Cancellation from './components/pages/Cancellation';
 import Careers from './components/pages/Careers';
 import Contactus from './components/pages/Contactus';
-import Corprate from './components/pages/Corprate';
 import EPR from './components/pages/EPR';
 import FAQ from './components/pages/FAQ';
 import Payments from './components/pages/Payments';
@@ -48,7 +47,7 @@ import Press from './components/pages/Press';
 import Privacy from './components/pages/Privacy';
 import ReturnPolicy from './components/pages/ReturnPolicy';
 import Security from './components/pages/Security';
-import Shopease from './components/pages/Shopease';
+
 import Shippingss from './components/pages/Shippingss';
 import Shopeasewholesale from './components/pages/Shopeasewholesale';
 import Sitemap from './components/pages/Sitemap';
@@ -85,6 +84,7 @@ function App() {
   return (
     <>
       <Header />
+      <br/>
       <Routes>
 
         <Route path="/contactus" element={<Contactus/>} />
@@ -92,15 +92,13 @@ function App() {
         <Route path="/Payments" element={<Payments/>} />
         <Route path="/Cancellation" element={<Cancellation/>} />
         <Route path="/Careers" element={<Careers/>} />
-        <Route path="/Corprate" element={<Corprate/>} />
         <Route path="/EPR" element={<EPR/>} />
         <Route path="/FAQ" element={<FAQ/>} />
         <Route path="/Press" element={<Press/>} />
         <Route path="/Privacy" element={<Privacy/>} />
         <Route path="/ReturnPolicy" element={<ReturnPolicy/>} />
         <Route path="/Security" element={<Security/>} />
-        <Route path="/Shopease" element={<Shopease/>} />
-        <Route path="/Shippingss" element={<Shippingss/>} /> 
+          <Route path="/Shippingss" element={<Shippingss/>} /> 
         <Route path="/Shopeasewholesale" element={<Shopeasewholesale/>} />
         <Route path="/Sitemap" element={<Sitemap/>} />
         <Route path="/Terms" element={<Terms/>} /> 
@@ -132,7 +130,11 @@ function App() {
 
         <Route path="/process/payment" element={
           <ProtectedRoute>
+            {/* // stripeApiKey && ( */}
+            {/* // <Elements stripe={loadStripe(stripeApiKey)}> */}
             <Payment />
+            {/* // </Elements> */}
+            {/* ) */}
           </ProtectedRoute>
         } ></Route>
 

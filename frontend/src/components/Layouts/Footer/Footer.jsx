@@ -25,10 +25,6 @@ const footerLinks = [
         redirect: "Careers",
       },
       {
-        name: "ShopEase Stories",
-        redirect: "ShopEase",
-      },
-      {
         name: "Press",
         redirect: "Press",
       },
@@ -36,27 +32,11 @@ const footerLinks = [
         name: "ShopEase Wholesale",
         redirect: "ShopEasewholesale",
       },
-      {
-        name: "Corporate Information",
-        redirect: "Corprate ",
-      },
-    ]
+     ]
   },
   {
     title: "help",
     links: [
-      {
-        name: "Payments",
-        redirect: "payments"
-      },
-      {
-        name: "Shipping",
-        redirect: "Shippingss",
-      },
-      {
-        name: "Cancellation & Returns",
-        redirect: "Cancellation",
-      },
       {
         name: "FAQ",
         redirect: "FAQ",
@@ -130,7 +110,7 @@ const Footer = () => {
 
               {footerLinks.map((el, i) => (
                 <div className="w-full sm:w-1/5 flex flex-col gap-2 my-3 sm:my-6 ml-5" key={i}>
-                  <h2 className="text-primary-grey mb-2 uppercase">{el.title}</h2>
+                  <h2 className="text-primary-green mb-2 uppercase">{el.title}</h2>
                   {el.links.map((item, i) => (
                     <a href={item.redirect} target="_blank" rel="noreferrer" className="hover:underline" key={i}>{item.name}</a>
                   ))}
@@ -143,7 +123,7 @@ const Footer = () => {
             <div className="border-gray-600 h-36 w-1 border-l mr-5 mt-6 hidden sm:block"></div>
             <div className="w-full sm:w-5/12 my-6 mx-5 sm:mx-0 flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between">
               <div className="w-full sm:w-1/2">
-                <h2 className="text-primary-grey">Mail Us:</h2>
+                <h2 className="text-primary-green">Mail Us:</h2>
                 <p className="mt-2 leading-5">ShopEase Private Limited,<br />
                   Baneshwor, Kathmandu &<br />
                   Nepal,<br />      
@@ -151,7 +131,7 @@ const Footer = () => {
               </div>
 
               <div className="w-full sm:w-1/2">
-                <h2 className="text-primary-grey">Registered Office Address:</h2>
+                <h2 className="text-primary-green">Registered Office Address:</h2>
                 <p className="mt-2 leading-5">ShopEase Private Limited,<br />
                   Baneshwor, Kathmandu &<br />
                   Nepal,<br />
@@ -163,23 +143,10 @@ const Footer = () => {
           </footer>
           {/* <!-- footer ends --> */}
 
-          <div className="px-16 py-6 w-full bg-primary-darkBlue hidden sm:flex justify-between items-center text-sm text-white">
-            <a href="https://seller.ShopEase.com/sell-online" target="_blank" rel="noreferrer" className="flex items-center gap-2">
-              <span className="text-yellow-400"><WorkIcon sx={{ fontSize: "20px" }} /></span> Sell In Nepal
-            </a>
-            <a href="https://brands.ShopEase.com" target="_blank" rel="noreferrer" className="flex items-center gap-2">
-              <span className="text-yellow-400"><StarsIcon sx={{ fontSize: "20px" }} /></span> Advertise
-            </a>
-            <a href="https://www.ShopEase.com/the-gift-card-store" rel="noreferrer" target="_blank" className="flex items-center gap-2">
-              <span className="text-yellow-400"><CardGiftcardIcon sx={{ fontSize: "20px" }} /></span> Gift Cards
-            </a>
-            <a href="https://www.ShopEase.com/helpcentre" target="_blank" rel="noreferrer" className="flex items-center gap-2">
-              <span className="text-yellow-400"><HelpIcon sx={{ fontSize: "20px" }} /></span> Help Center
-            </a>
+          <div className="px-16 py-6 w-full bg-primary-darkBlue hidden sm:flex justify-center items-center text-sm text-white text-center">
+  <span>&copy; 2020-{new Date().getFullYear()} ShopEase.com</span>
+</div>
 
-            <span>&copy; 2020-{new Date().getFullYear()} ShopEase.com</span>
-            <img draggable="false" src={paymentMethods} alt="Card Payment" />
-          </div>
         </>
       )}
     </>

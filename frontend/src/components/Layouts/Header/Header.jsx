@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Searchbar from './Searchbar';
 import logo from '../../../assets/images/logo.ico';
 import PrimaryDropDownMenu from './PrimaryDropDownMenu';
-import SecondaryDropDownMenu from './SecondaryDropDownMenu';
+
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -50,11 +50,9 @@ const Header = () => {
 
           {togglePrimaryDropDown && <PrimaryDropDownMenu setTogglePrimaryDropDown={setTogglePrimaryDropDown} user={user} />}
 
-          <span className="moreDropDown hidden sm:flex items-center text-white font-medium gap-1 cursor-pointer" onClick={() => setToggleSecondaryDropDown(!toggleSecondaryDropDown)}>More
-            <span>{toggleSecondaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
-          </span>
+        
 
-          {toggleSecondaryDropDown && <SecondaryDropDownMenu />}
+     
 
           <Link to="/cart" className="flex items-center text-white font-medium gap-2 relative">
             <span><ShoppingCartIcon /></span>
@@ -70,6 +68,7 @@ const Header = () => {
 
       </div>
       {/* <!-- navbar container --> */}
+      
     </header>
   )
 };

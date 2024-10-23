@@ -93,19 +93,7 @@ const Account = () => {
                                     {/* <!-- email address info --> */}
 
                                     {/* <!-- mobile number info --> */}
-                                    <div className="flex flex-col gap-5 items-start">
-                                        <span className="font-medium text-lg">Mobile Number
-                                            <span className="text-sm text-primary-green font-medium ml-3 sm:ml-8 cursor-pointer" id="mobEditBtn">Edit</span>
-                                        </span>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="flex flex-col gap-0.5 sm:w-64 px-3 py-1.5 rounded-sm border bg-gray-100 cursor-not-allowed focus-within:border-primary-blue">
-                                                <label className="text-xs text-gray-500">Mobile Number</label>
-                                                <input type="tel" value="+919876543210" className="text-sm outline-none border-none text-gray-500 cursor-not-allowed" disabled />
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                 
                                     {/* <!-- mobile number info --> */}
 
                                     {/* <!-- faqs --> */}

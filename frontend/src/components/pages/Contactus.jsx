@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../CSSForFooter/contactus.css';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+
 
 
 const Contactus = () => {
@@ -26,9 +26,8 @@ const Contactus = () => {
      })
      console.log(result)
      
-     toast.success(result.data.message) 
    } catch (error) {
-    toast.error(error.response.data.message)  
+    console.log(error)
    }
    setName("")
    setEmail("")

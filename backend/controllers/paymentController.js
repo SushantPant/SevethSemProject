@@ -4,6 +4,7 @@ const Payment = require("../models/paymentModel"); // Assuming you have a Paymen
 const website_url = "https://localhost:3000";
 // const ErrorHandler = require("../utils/errorHandler");
 const { v4: uuidv4 } = require("uuid");
+const { compileETag } = require("express/lib/utils");
 //initate payment
 const processPayment = asyncErrorHandler(async (req, res, next) => {
   try {
@@ -19,6 +20,7 @@ const processPayment = asyncErrorHandler(async (req, res, next) => {
     };
       
     const khaltiApiKey =process.env.KHALTI_KEY ;
+    console.log(khaltiApiKey)
     // Configure request headers
     const config = {
       headers: {
@@ -127,7 +129,7 @@ const verifyKhaltiPayment = async (pidx) => {
   }
 };
 const addPayment = async (data) => {
-  console.log("data", data);
+  // console.log("data", data);
   try {
     await Payment.create(data);
     console.log("Payment added successfully");

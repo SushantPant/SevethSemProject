@@ -1,13 +1,10 @@
-function ErrorHandler(message, statusCode) {
-  const error = new Error(message);
-  error.statusCode = statusCode;
+class ErrorHandler extends Error {
+    constructor(message, statusCode) {
+        super(message);
+        this.statusCode = statusCode
 
-  // Capture the stack trace in Node.js environments
-  if (Error.captureStackTrace) {
-    Error.captureStackTrace(error, ErrorHandler);
-  }
-
-  return error;
+        Error.captureStackTrace(this, this.constructor);
+    }
 }
 
 module.exports = ErrorHandler;

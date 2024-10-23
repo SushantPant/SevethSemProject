@@ -4,7 +4,7 @@ import '../CSSForFooter/returnPolicy.css'
 const ReturnPolicy = () => {
   return (
     <div className="return-policy-container">
-      <div>Lorem ipsum dolor sit amet consectetur adiplorem10 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, <quis className="lorem5"></quis></div>
+      <br></br>
       <h1 className="title">Return Policy</h1>
       <p className="description">
         Thank you for shopping with us. If you are not entirely satisfied with your purchase, we're here to help.

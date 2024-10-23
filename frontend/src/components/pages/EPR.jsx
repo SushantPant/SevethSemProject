@@ -16,8 +16,7 @@ const EPR = () => {
 
   return (
     <div className="epr-complaints-container">
-      <div>Lorem ips voluptatum nsequuntur molestias nisi autem debitis voluptatum consectetur, voluptate soluta nobis maiores fugit vitae asperiores, expedita explicabo quidem? Ipsa sequi nam velit eos et!lorem20
-      </div>
+      <br></br>
       <h1 className="title">EPR Complaints</h1>
       <p className="description">
         We are committed to resolving any complaints related to our Extended Producer Responsibility (EPR) program. Please use the form below to submit your complaint.

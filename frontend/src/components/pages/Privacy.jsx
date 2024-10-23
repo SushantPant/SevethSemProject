@@ -4,7 +4,7 @@ import '../CSSForFooter/privacy.css'
 const Privacy = () => {
   return (
     <div className="privacy-container">
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nulla explicabo commodi voluptatem repellat mollitia atque dolores incidunt accusantium odit.</div>
+      <br></br>
       <h1 className="title">Privacy Policy</h1>
       <p className="description">
         Your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your personal information.

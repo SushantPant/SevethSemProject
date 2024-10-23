@@ -57,7 +57,6 @@ const FAQ = () => {
 
   return (
     <div className="faq-container">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing onsequatur aliquid asperiores eligendi exercitationem mollitia minus. Mollitia iste fugit tempora minus soluta minima! </p>
       <h1>Frequently Asked Questions</h1>
       <div className="faq-list">
         {faqs.map((faq, index) => (

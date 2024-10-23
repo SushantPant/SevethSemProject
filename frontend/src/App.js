@@ -37,21 +37,20 @@ import ReviewsTable from './components/Admin/ReviewsTable';
 import Wishlist from './components/Wishlist/Wishlist';
 import NotFound from './components/NotFound';
 import AboutUs from './components/pages/Aboutus';
-import Cancellation from './components/pages/Cancellation';
+
 import Careers from './components/pages/Careers';
 import Contactus from './components/pages/Contactus';
 import EPR from './components/pages/EPR';
 import FAQ from './components/pages/FAQ';
-import Payments from './components/pages/Payments';
+
 import Press from './components/pages/Press';
 import Privacy from './components/pages/Privacy';
 import ReturnPolicy from './components/pages/ReturnPolicy';
 import Security from './components/pages/Security';
 
-import Shippingss from './components/pages/Shippingss';
+
 import Shopeasewholesale from './components/pages/Shopeasewholesale';
 import Sitemap from './components/pages/Sitemap';
-import Terms from './components/pages/Terms';
 
 function App() {
 
@@ -89,8 +88,8 @@ function App() {
 
         <Route path="/contactus" element={<Contactus/>} />
         <Route path="/Aboutus" element={<AboutUs />} />
-        <Route path="/Payments" element={<Payments/>} />
-        <Route path="/Cancellation" element={<Cancellation/>} />
+      
+
         <Route path="/Careers" element={<Careers/>} />
         <Route path="/EPR" element={<EPR/>} />
         <Route path="/FAQ" element={<FAQ/>} />
@@ -98,10 +97,9 @@ function App() {
         <Route path="/Privacy" element={<Privacy/>} />
         <Route path="/ReturnPolicy" element={<ReturnPolicy/>} />
         <Route path="/Security" element={<Security/>} />
-          <Route path="/Shippingss" element={<Shippingss/>} /> 
-        <Route path="/Shopeasewholesale" element={<Shopeasewholesale/>} />
+               <Route path="/Shopeasewholesale" element={<Shopeasewholesale/>} />
         <Route path="/Sitemap" element={<Sitemap/>} />
-        <Route path="/Terms" element={<Terms/>} /> 
+
 
 
 

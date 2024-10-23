@@ -1,104 +1,54 @@
 import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import WorkIcon from '@mui/icons-material/Work';
 import StarsIcon from '@mui/icons-material/Stars';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import HelpIcon from '@mui/icons-material/Help';
 import paymentMethods from '../../../assets/images/payment-methods.svg';
-import { useLocation } from 'react-router-dom';
-
-
 
 const footerLinks = [
   {
     title: "about",
     links: [
-      {
-        name: "Contactus",
-        redirect:"Contactus"
-      },
-      {
-        name: "About Us",
-        redirect: "Aboutus",
-      },
-      {
-        name: "Careers",
-        redirect: "Careers",
-      },
-      {
-        name: "Press",
-        redirect: "Press",
-      },
-      {
-        name: "ShopEase Wholesale",
-        redirect: "ShopEasewholesale",
-      },
-     ]
+      { name: "Contactus", redirect: "/contactus" },
+      { name: "About Us", redirect: "/aboutus" },
+      { name: "Careers", redirect: "/careers" },
+      { name: "Press", redirect: "/press" },
+      { name: "ShopEase Wholesale", redirect: "/shopeasewholesale" },
+    ]
   },
   {
     title: "help",
     links: [
-      {
-        name: "FAQ",
-        redirect: "FAQ",
-      }
+      { name: "FAQ", redirect: "/faq" },
     ]
   },
   {
     title: "policy",
     links: [
-      {
-        name: "Return Policy",
-        redirect: "ReturnPolicy",
-      },
-      {
-        name: "Terms Of Use",
-        redirect: "Terms",
-      },
-      {
-        name: "Security",
-        redirect: "Security",
-      },
-      {
-        name: "Privacy",
-        redirect: "Privacy",
-      },
-      {
-        name: "Sitemap",
-        redirect: "Sitemap",
-      },
-      {
-        name: "EPR Compliance",
-        redirect: "EPR",
-      },
+      { name: "Return Policy", redirect: "/returnpolicy" },
+      { name: "Security", redirect: "/security" },
+      { name: "Privacy", redirect: "/privacy" },
+      { name: "Sitemap", redirect: "/sitemap" },
+      { name: "EPR Compliance", redirect: "/epr" },
     ]
   },
   {
     title: "social",
     links: [
-      {
-        name: "Facebook",
-        redirect: "https://www.facebook.com/ShopEase",
-      },
-      {
-        name: "Twitter",
-        redirect: "https://twitter.com/ShopEase",
-      },
-      {
-        name: "YouTube",
-        redirect: "https://www.youtube.com/ShopEase",
-      }
+      { name: "Facebook", redirect: "https://www.facebook.com/ShopEase" },
+      { name: "Twitter", redirect: "https://twitter.com/ShopEase" },
+      { name: "YouTube", redirect: "https://www.youtube.com/ShopEase" },
     ]
   }
-]
+];
 
 const Footer = () => {
-  const [button,setButton] = useState(false)
-
   const location = useLocation();
   const [adminRoute, setAdminRoute] = useState(false);
 
   useEffect(() => {
-    setAdminRoute(location.pathname.split("/", 2).includes("admin"))
+    setAdminRoute(location.pathname.split("/", 2).includes("admin"));
   }, [location]);
 
   return (
@@ -107,17 +57,18 @@ const Footer = () => {
         <>
           <footer className="mt-20 w-full py-1 sm:py-4 px-4 sm:px-12 bg-primary-darkBlue text-white text-xs border-b border-gray-600 flex flex-col sm:flex-row overflow-hidden">
             <div className="w-full sm:w-7/12 flex flex-col sm:flex-row">
-
               {footerLinks.map((el, i) => (
                 <div className="w-full sm:w-1/5 flex flex-col gap-2 my-3 sm:my-6 ml-5" key={i}>
                   <h2 className="text-primary-green mb-2 uppercase">{el.title}</h2>
-                  {el.links.map((item, i) => (
-                    <a href={item.redirect} target="_blank" rel="noreferrer" className="hover:underline" key={i}>{item.name}</a>
+                  {el.links.map((item, j) => (
+                    item.redirect.startsWith("http") ? (
+                      <a href={item.redirect} target="_blank" rel="noreferrer" className="hover:underline" key={j}>{item.name}</a>
+                    ) : (
+                      <Link to={item.redirect} className="hover:underline" key={j}>{item.name}</Link>
+                    )
                   ))}
-
                 </div>
               ))}
-
             </div>
 
             <div className="border-gray-600 h-36 w-1 border-l mr-5 mt-6 hidden sm:block"></div>
@@ -126,7 +77,7 @@ const Footer = () => {
                 <h2 className="text-primary-green">Mail Us:</h2>
                 <p className="mt-2 leading-5">ShopEase Private Limited,<br />
                   Baneshwor, Kathmandu &<br />
-                  Nepal,<br />      
+                  Nepal,<br />
                 </p>
               </div>
 
@@ -139,18 +90,15 @@ const Footer = () => {
                 </p>
               </div>
             </div>
-
           </footer>
-          {/* <!-- footer ends --> */}
 
           <div className="px-16 py-6 w-full bg-primary-darkBlue hidden sm:flex justify-center items-center text-sm text-white text-center">
-  <span>&copy; 2020-{new Date().getFullYear()} ShopEase.com</span>
-</div>
-
+            <span>&copy; 2020-{new Date().getFullYear()} ShopEase.com</span>
+          </div>
         </>
       )}
     </>
-  )
+  );
 };
 
 export default Footer;

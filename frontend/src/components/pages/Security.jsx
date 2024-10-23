@@ -4,7 +4,7 @@ import '../CSSForFooter/security.css'
 const Security = () => {
   return (
     <div className="security-container">
-      <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod sequi magnam modi perferendis. Sed, consequatur corrupti? Iure laudantium non hic.</div>
+    <br></br>
       <h1 className="title">Security Information</h1>
       <p className="description">
         At our company, protecting your information is a top priority. We use industry-standard security measures to ensure your data is safe.

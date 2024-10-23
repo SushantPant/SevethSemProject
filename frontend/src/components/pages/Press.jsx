@@ -28,6 +28,7 @@ const Press = () => {
 
   return (
     <div className="press-container">
+      <br></br>
       <h1>Press & Media</h1>
       <p>See the latest news and updates about Shopease in the media.</p>
       <div className="press-grid">

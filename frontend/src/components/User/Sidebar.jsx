@@ -56,9 +56,12 @@ const Sidebar = ({ activeTab }) => {
 
                 {/* <!-- account settings tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4">
-                    <span className="text-primary-green"><PersonIcon /></span>
-                    <p className="flex w-full justify-between font-medium text-gray-500">ACCOUNT SETTINGS</p>
-                </div>
+    <p className="flex w-full font-medium text-gray-500">
+        <span className="text-primary-green "><PersonIcon /></span>
+        &nbsp; &nbsp; ACCOUNT SETTINGS
+    </p>
+</div>
+
                 <div className="flex flex-col pb-3 border-b text-sm">
                     <Link to="/account" className={`${activeTab === "profile" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`}>Profile Information</Link>
                        </div>
@@ -73,8 +76,10 @@ const Sidebar = ({ activeTab }) => {
 
                 {/* <!-- my stuff tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4">
-                    <span className="text-primary-green"><FolderSharedIcon /></span>
-                    <p className="flex w-full justify-between font-medium text-gray-500">MY STUFF</p>
+                    
+                    <p className="flex w-full font-medium text-gray-500">
+                    <span className="text-primary-green" ><FolderSharedIcon /></span>
+                    &nbsp; &nbsp;   MY STUFF</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-sm">
                    
@@ -84,8 +89,9 @@ const Sidebar = ({ activeTab }) => {
 
                 {/* <!-- logout tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4 border-b">
-                    <span className="text-primary-green"><PowerSettingsNewIcon /></span>
+                
                     <div className="flex w-full justify-between font-medium text-gray-500 hover:text-primary-green cursor-pointer" onClick={handleLogout}>
+                            <span className="text-primary-green"><PowerSettingsNewIcon /></span>
                         Logout
                         <span><ChevronRightIcon /></span>
                     </div>
@@ -96,14 +102,7 @@ const Sidebar = ({ activeTab }) => {
             {/* <!-- nav tiles --> */}
 
             {/* <!-- frequenty visited tab --> */}
-            <div className="flex flex-col items-start gap-2 p-4 bg-white rounded-sm shadow">
-                <span className="text-xs font-medium">Frequently Visited:</span>
-                <div className="flex gap-2.5 text-xs text-gray-500">
-                    <Link to="/password/update">Change Password</Link>
-                    <Link to="/orders">Track Order</Link>
-                    <Link to="/">Help Center</Link>
-                </div>
-            </div>
+           
             {/* <!-- frequenty visited tab --> */}
         </div>
     );

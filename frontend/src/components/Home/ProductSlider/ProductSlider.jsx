@@ -6,8 +6,13 @@ import { settings } from '../DealSlider/DealSlider';
 import Product from './Product';
 
 const ProductSlider = ({ title, tagline }) => {
-
     const { loading, products } = useSelector((state) => state.products);
+
+    // Retrieve categories from session storage
+    const categories = JSON.parse(sessionStorage.getItem('categories')) || [];
+
+    // Filter products based on the retrieved categories
+    const filteredProducts = products?.filter(product => categories.includes(product.category));
 
     return (
         <section className="bg-white w-full shadow overflow-hidden">
@@ -20,14 +25,13 @@ const ProductSlider = ({ title, tagline }) => {
                 <Link to="/products" className="bg-primary-green text-xs font-medium text-white px-5 py-2.5 rounded-sm shadow-lg uppercase">view all</Link>
             </div>
             <hr />
-            {loading ? null :
+            {loading ? null : (
                 <Slider {...settings} className="flex items-center justify-between p-1">
-                    {products && getRandomProducts(products, 12).map((product) => (
+                    {filteredProducts && getRandomProducts(filteredProducts, 12).map((product) => (
                         <Product {...product} key={product._id} />
                     ))}
                 </Slider>
-            }
-
+            )}
         </section>
     );
 };

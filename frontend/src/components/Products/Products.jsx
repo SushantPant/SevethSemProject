@@ -59,6 +59,25 @@ const Products = () => {
         dispatch(getProducts(keyword, category, price, ratings, currentPage));
     }, [dispatch, keyword, category, price, ratings, currentPage, error, enqueueSnackbar]);
 
+    const handleCategoryChange = (e) => {
+        const selectedCategory = e.target.value;
+        setCategory(selectedCategory); // Update state with selected category
+
+        // Retrieve stored categories from sessionStorage
+        const storedCategories = JSON.parse(sessionStorage.getItem('categories')) || [];
+
+        // Check if the selected category is already stored
+        if (!storedCategories.includes(selectedCategory)) {
+            // If there are already 4 categories, remove the oldest
+            if (storedCategories.length >= 4) {
+                storedCategories.shift(); // Remove the first (oldest) category
+            }
+            // Add the new category
+            storedCategories.push(selectedCategory);
+            sessionStorage.setItem('categories', JSON.stringify(storedCategories)); // Store updated categories
+        }
+    };
+
     return (
         <>
             <MetaData title="All Products | ShopEase" />
@@ -116,21 +135,26 @@ const Products = () => {
                                     </div>
 
                                     {categoryToggle && (
-                                        <div className="flex flex-col pb-1">
-                                            <FormControl>
-                                                <RadioGroup
-                                                    aria-labelledby="category-radio-buttons-group"
-                                                    onChange={(e) => setCategory(e.target.value)}
-                                                    name="category-radio-buttons"
-                                                    value={category}
-                                                >
-                                                    {categories.map((el, i) => (
-                                                        <FormControlLabel value={el} control={<Radio size="small" />} label={<span className="text-sm" key={i}>{el}</span>} />
-                                                    ))}
-                                                </RadioGroup>
-                                            </FormControl>
-                                        </div>
-                                    )}
+    <div className="flex flex-col pb-1">
+        <FormControl>
+            <RadioGroup
+                aria-labelledby="category-radio-buttons-group"
+                onChange={handleCategoryChange}
+                name="category-radio-buttons"
+                value={category}
+            >
+                {categories.map((el, i) => (
+                    <FormControlLabel
+                        key={i} // Moved key here for uniqueness
+                        value={el}
+                        control={<Radio size="small" />}
+                        label={<span className="text-sm">{el}</span>}
+                    />
+                ))}
+            </RadioGroup>
+        </FormControl>
+    </div>
+)}
 
                                 </div>
                                 {/* category filter */}

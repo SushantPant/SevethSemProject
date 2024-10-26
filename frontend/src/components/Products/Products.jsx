@@ -63,18 +63,18 @@ const Products = () => {
         const selectedCategory = e.target.value;
         setCategory(selectedCategory); // Update state with selected category
 
-        // Retrieve stored categories from sessionStorage
-        const storedCategories = JSON.parse(sessionStorage.getItem('categories')) || [];
+        // Retrieve stored categories from localStorage
+        const storedCategories = JSON.parse(localStorage.getItem('categories')) || [];
 
         // Check if the selected category is already stored
         if (!storedCategories.includes(selectedCategory)) {
             // If there are already 4 categories, remove the oldest
-            if (storedCategories.length >= 4) {
+            if (storedCategories.length >= 8) {
                 storedCategories.shift(); // Remove the first (oldest) category
             }
             // Add the new category
             storedCategories.push(selectedCategory);
-            sessionStorage.setItem('categories', JSON.stringify(storedCategories)); // Store updated categories
+            localStorage.setItem('categories', JSON.stringify(storedCategories)); // Store updated categories
         }
     };
 

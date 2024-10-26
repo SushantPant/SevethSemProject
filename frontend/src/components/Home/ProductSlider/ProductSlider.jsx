@@ -9,7 +9,7 @@ const ProductSlider = ({ title, tagline }) => {
     const { loading, products } = useSelector((state) => state.products);
 
     // Retrieve categories from session storage
-    const categories = JSON.parse(sessionStorage.getItem('categories')) || [];
+    const categories = JSON.parse(localStorage.getItem('categories')) || [];
 
     // Filter products based on the retrieved categories
     const filteredProducts = products?.filter(product => categories.includes(product.category));

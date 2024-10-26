@@ -1,26 +1,25 @@
 const axios = require("axios");
 const asyncErrorHandler = require("../middlewares/asyncErrorHandler");
 const Payment = require("../models/paymentModel"); // Assuming you have a Payment model defined
-const website_url = "https://localhost:3000";
+
 // const ErrorHandler = require("../utils/errorHandler");
 const { v4: uuidv4 } = require("uuid");
-const { compileETag } = require("express/lib/utils");
+
 //initate payment
 const processPayment = asyncErrorHandler(async (req, res, next) => {
   try {
-      
-    const { return_url, itemId, totalPrice, name } = req.body; 
+    const { return_url, itemId, totalPrice, name } = req.body;
     const formData = {
       return_url: return_url,
-      website_url: website_url,
+      website_url: `${process.env.WEBSITE_URL}`,
       amount: totalPrice * 100, //paisa
-      purchase_order_id: "oid" +uuidv4(),
-      order_id: uuidv4(),
+      purchase_order_id: "oid" + uuidv4(),
+      order_id: itemId,
       purchase_order_name: name,
     };
-      
-    const khaltiApiKey =process.env.KHALTI_KEY ;
-    console.log(khaltiApiKey)
+
+    const khaltiApiKey = process.env.KHALTI_KEY;
+    // console.log(khaltiApiKey);
     // Configure request headers
     const config = {
       headers: {
@@ -31,7 +30,7 @@ const processPayment = asyncErrorHandler(async (req, res, next) => {
 
     // Send payment initiation request to Khalti
     const response = await axios.post(
-      "https://a.khalti.com/api/v2/epayment/initiate/",
+      `{${process.env.KHALTI_GATEWAY_URL}/api/v2/epayment/initiate/}`,
       formData,
       config
     );
@@ -48,11 +47,9 @@ const processPayment = asyncErrorHandler(async (req, res, next) => {
   }
 });
 
-
 //verify payment
 const KhaltiResponse = async (req, res) => {
-  const { txnId, pidx, amount, purchase_order_id, transaction_id, message } =
-    req.query;
+  const { pidx, amount, purchase_order_id, transaction_id } = req.query;
 
   try {
     const paymentInfo = await verifyKhaltiPayment(pidx);
@@ -70,20 +67,13 @@ const KhaltiResponse = async (req, res) => {
     }
 
     const paymentData = {
-      resultInfo: {
-        resultStatus: paymentInfo.status,
-        resultCode: "N/A",
-        resultMsg: message || "N/A",
-      },
-      txnId: paymentInfo.transaction_id || uuidv4(),
-      transactionId: transaction_id || uuidv4(),
+      resultStatus: paymentInfo.status,
+      transactionId: transaction_id,
       pidx: pidx || uuidv4(),
-      bankTxnId: uuidv4(),
       orderId: purchase_order_id,
       txnAmount: (amount / 100).toString(),
       txnType: "Wallet_payment",
       gatewayName: "Khalti",
-      mid: "N/A",
       paymentMode: "Online",
       refundAmt: (paymentInfo.refund_amount || 0).toString(),
       txnDate: new Date().toISOString(), // Correct date format
@@ -94,7 +84,7 @@ const KhaltiResponse = async (req, res) => {
     //   success: true,
     //   paymentData: paymentInfo,
     //  })
-    res.redirect(`http://localhost:3000/order/${purchase_order_id}`);
+    res.redirect(`{${process.env.WEBSITE_URL}/order/${purchase_order_id}}`); //redirect to order page
   } catch (error) {
     console.error("Error processing Khalti response:", error);
     res
@@ -103,18 +93,17 @@ const KhaltiResponse = async (req, res) => {
   }
 };
 
-
 const verifyKhaltiPayment = async (pidx) => {
   try {
     const headersList = {
       Accept: "application/json",
-      Authorization: `Key ${process.env.KHALTI_KEY }`,
+      Authorization: `Key ${process.env.KHALTI_KEY}`,
       "Content-Type": "application/json",
     };
 
     const bodyContent = JSON.stringify({ pidx });
     const reqOptions = {
-      url: "https://a.khalti.com/api/v2/epayment/lookup/",
+      url: `{${process.env.KHALTI_GATEWAY_URL}/api/v2/epayment/lookup/}`,
       method: "POST",
       headers: headersList,
       data: bodyContent,
@@ -131,11 +120,15 @@ const verifyKhaltiPayment = async (pidx) => {
 const addPayment = async (data) => {
   // console.log("data", data);
   try {
+    //check if payment already exists
+    if (await Payment.findOne({ transactionId: data.transactionId })) {
+      return console.log("Payment already exists");
+    }
     await Payment.create(data);
     console.log("Payment added successfully");
   } catch (error) {
     console.log("Payment failed");
-    // console.log(error.message)
+    console.log(error.message);
   }
 };
 
@@ -149,8 +142,8 @@ const getPaymentStatus = async (req, res) => {
   }
 
   const txn = {
-    id: payment.txnId,
-    status: payment.resultInfo.resultStatus,
+    id: payment.transactionId,
+    status: payment.resultStatus,
   };
 
   res.status(200).json({

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PriceSidebar from "./PriceSidebar";
 import Stepper from "./Stepper";
-import { clearErrors} from "../../actions/orderAction";
+import { clearErrors } from "../../actions/orderAction";
 import { useSnackbar } from "notistack";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -25,22 +25,21 @@ const Payment = () => {
   );
 
   const paymentData = {
-    return_url: "http://localhost:4000/api/v1/payment/complete",//can be placed in backend
+    return_url: "http://localhost:4000/api/v1/payment/complete", //can be placed in backend
     itemId: cartItems[0].product,
     totalPrice: totalPrice,
     name: cartItems[0].name,
   };
+
+  
+  //test data
+
   // const paymentData = {
   //   return_url: "http://localhost:4000/api/v1/payment/complete",
   //   itemId: "12",
   //   totalPrice: 10,
   //   name: "test",
   // };
-  //  const order = {
-  //       shippingInfo,
-  //       orderItems: cartItems,
-  //        totalPrice,
-  //  }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -59,7 +58,7 @@ const Payment = () => {
       );
 
       window.location.href = data.response.payment_url;
-    
+
       dispatch(clearErrors());
     } catch (error) {
       setPayDisable(false);
@@ -68,12 +67,12 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    console.log(cartItems);
+    // console.log(cartItems);
     if (error) {
       dispatch(clearErrors());
       enqueueSnackbar(error, { variant: "error" });
     }
-  }, [dispatch, error, enqueueSnackbar, shippingInfo,cartItems]);
+  }, [dispatch, error, enqueueSnackbar, shippingInfo, cartItems]);
 
   return (
     <>

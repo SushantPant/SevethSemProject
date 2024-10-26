@@ -27,10 +27,10 @@ const processPayment = asyncErrorHandler(async (req, res, next) => {
         "Content-Type": "application/json",
       },
     };
-
+    const khaltiapi = process.env.KHALTI_GATEWAY_URL;
     // Send payment initiation request to Khalti
     const response = await axios.post(
-      `{${process.env.KHALTI_GATEWAY_URL}/api/v2/epayment/initiate/}`,
+      `${process.env.KHALTI_GATEWAY_URL}/api/v2/epayment/initiate/`,
       formData,
       config
     );
@@ -84,7 +84,7 @@ const KhaltiResponse = async (req, res) => {
     //   success: true,
     //   paymentData: paymentInfo,
     //  })
-    res.redirect(`{${process.env.WEBSITE_URL}/order/${purchase_order_id}}`); //redirect to order page
+    res.redirect(`${process.env.WEBSITE_URL}/order/${purchase_order_id}`); //redirect to order page
   } catch (error) {
     console.error("Error processing Khalti response:", error);
     res
@@ -103,7 +103,7 @@ const verifyKhaltiPayment = async (pidx) => {
 
     const bodyContent = JSON.stringify({ pidx });
     const reqOptions = {
-      url: `{${process.env.KHALTI_GATEWAY_URL}/api/v2/epayment/lookup/}`,
+      url: `${process.env.KHALTI_GATEWAY_URL}/api/v2/epayment/lookup/`,
       method: "POST",
       headers: headersList,
       data: bodyContent,

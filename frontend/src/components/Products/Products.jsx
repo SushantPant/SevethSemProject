@@ -212,12 +212,36 @@ const Products = () => {
                         {loading ? <Loader /> : (
                             <div className="flex flex-col gap-2 pb-4 justify-center items-center w-full overflow-hidden bg-white">
 
-                                <div className="grid grid-cols-1 sm:grid-cols-4 w-full place-content-start overflow-hidden pb-4 border-b">
-                                    {products?.map((product) => (
-                                            <Product {...product} key={product._id} />
-                                        ))
-                                    }
-                                </div>
+<div className="grid grid-cols-1 sm:grid-cols-4 w-full place-content-start overflow-hidden pb-4 border-b">
+  {products?.map((product) => {
+    const path = window.location.pathname;
+  console.log(product)
+  let counter=1;
+
+    if (path !== "/products" ) {
+        // Retrieve the array from localStorage or set it to a default array with "Bakery"
+        const storedSearchItems = JSON.parse(localStorage.getItem("searches")) || []
+        
+        // Create a new array, including the current product category
+        const searchItemsArray = product.category;  
+ 
+        // Check if searchItemsArray already contains the new item
+        if (!storedSearchItems.includes(searchItemsArray) ) { 
+            if(storedSearchItems.length>2)       {
+                storedSearchItems.shift();
+            }
+            // Push unique items and update localStorage
+            storedSearchItems.push(product.category);
+            localStorage.setItem("searches", JSON.stringify(storedSearchItems));
+            
+        }
+        }
+    
+      
+      return <Product {...product} key={product._id} />;
+  })}
+</div>
+
                                 {filteredProductsCount > resultPerPage && (
                                     <Pagination
                                         count={Number(((filteredProductsCount + 6) / resultPerPage).toFixed())}

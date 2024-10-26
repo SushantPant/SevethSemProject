@@ -10,9 +10,12 @@ const ProductSlider = ({ title, tagline }) => {
 
     // Retrieve categories from session storage
     const categories = JSON.parse(localStorage.getItem('categories')) || [];
+    const searches = JSON.parse(localStorage.getItem('searches')) || [];
+    const combinedFilters = [...new Set([...categories, ...searches])];
+   
 
     // Filter products based on the retrieved categories
-    const filteredProducts = products?.filter(product => categories.includes(product.category));
+    const filteredProducts = products?.filter(product => combinedFilters.includes(product.category));
 
     return (
         <section className="bg-white w-full shadow overflow-hidden">

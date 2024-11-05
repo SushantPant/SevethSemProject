@@ -7,7 +7,7 @@ import Slider from '@mui/material/Slider';
 import { useSnackbar } from 'notistack';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { clearErrors, getProducts } from '../../actions/productAction';
 import Loader from '../Layouts/Loader';
 import MinCategory from '../Layouts/MinCategory';
@@ -17,11 +17,8 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import StarIcon from '@mui/icons-material/Star';
 import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
-import { getRandomProducts } from '../../utils/functions';
-import { useLocation } from 'react-router-dom';
 
 const Products = () => {
-
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
@@ -30,11 +27,7 @@ const Products = () => {
     const [price, setPrice] = useState([0, 20000]);
     const [category, setCategory] = useState(location.search ? location.search.split("=")[1] : "");
     const [ratings, setRatings] = useState(0);
-
-    // pagination
     const [currentPage, setCurrentPage] = useState(1);
-
-    // filter toggles
     const [categoryToggle, setCategoryToggle] = useState(true);
     const [ratingsToggle, setRatingsToggle] = useState(true);
 
@@ -52,29 +45,34 @@ const Products = () => {
     }
 
     useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const newCategory = queryParams.get('category');
+        if (newCategory !== category) {
+            setCategory(newCategory);
+        }
+        dispatch(getProducts(keyword, newCategory, price, ratings, currentPage));
+    }, [location.search, dispatch, keyword, price, ratings, currentPage]); // Make sure to include all dependencies
+
+    useEffect(() => {
         if (error) {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
         }
-        dispatch(getProducts(keyword, category, price, ratings, currentPage));
-    }, [dispatch, keyword, category, price, ratings, currentPage, error, enqueueSnackbar]);
+    }, [error, dispatch, enqueueSnackbar]);
 
     const handleCategoryChange = (e) => {
         const selectedCategory = e.target.value;
-        setCategory(selectedCategory); // Update state with selected category
-
-        // Retrieve stored categories from localStorage
+        setCategory(selectedCategory);
+        dispatch(getProducts(keyword, selectedCategory, price, ratings, currentPage));
+        
+        // Store category in localStorage
         const storedCategories = JSON.parse(localStorage.getItem('categories')) || [];
-
-        // Check if the selected category is already stored
         if (!storedCategories.includes(selectedCategory)) {
-            // If there are already 4 categories, remove the oldest
-            if (storedCategories.length >= 8) {
+            if (storedCategories.length >= 3) {
                 storedCategories.shift(); // Remove the first (oldest) category
             }
-            // Add the new category
             storedCategories.push(selectedCategory);
-            localStorage.setItem('categories', JSON.stringify(storedCategories)); // Store updated categories
+            localStorage.setItem('categories', JSON.stringify(storedCategories));
         }
     };
 

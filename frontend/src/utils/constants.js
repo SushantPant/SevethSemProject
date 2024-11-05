@@ -43,7 +43,7 @@ export const offerProducts = [
     },
     {
         image: "https://www.freshdirect.com/media/images/product/bakery_2/bak_pid_4651455_j.jpg",
-        name: "Bakery Items",
+        name: "Bakery",
         offer: "Min 40% Off",
         tag: "Explore Now!",
     },

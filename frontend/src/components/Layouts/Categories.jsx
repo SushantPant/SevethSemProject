@@ -14,31 +14,31 @@ const catNav = [
         icon: bakery,
     },
     {
-        name: "Candy",
+        name: "Packaged Foods",
         icon: candy,
     },
     {
-        name: "Drinks",
+        name: "Snacks and Beverages",
         icon: drinks,
     },
     {
-        name: "Essentials",
+        name: "Household Essentials",
         icon: essentials,
     },
     {
-        name: "Meat",
+        name: "Frozen Foods",
         icon: meat,
     },
     {
-        name: "Milk",
+        name: "Dairy and Eggs",
         icon: milk,
     },
     {
-        name: "Snacks",
+        name: "International Foods",
         icon: snacks,
     },
     {
-        name: "Veggies",
+        name: "Fresh Produce",
         icon: vegetables,
     },
 

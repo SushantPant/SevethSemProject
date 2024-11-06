@@ -337,8 +337,8 @@ const UpdateProduct = () => {
                     <h2 className="font-medium">Specifications</h2>
 
                     <div className="flex justify-evenly gap-2 items-center">
-                        <TextField value={specsInput.title} onChange={handleSpecsChange} name="title" label="Name" placeholder="Model No" variant="outlined" size="small" />
-                        <TextField value={specsInput.description} onChange={handleSpecsChange} name="description" label="Description" placeholder="WJDK42DF5" variant="outlined" size="small" />
+                        <TextField value={specsInput.title} onChange={handleSpecsChange} name="title" label="Name" placeholder="About" variant="outlined" size="small" />
+                        <TextField value={specsInput.description} onChange={handleSpecsChange} name="description" label="Description" placeholder="Write Something" variant="outlined" size="small" />
                         <span onClick={() => addSpecs()} className="py-2 px-6 bg-primary-green text-white rounded hover:shadow-lg cursor-pointer">Add</span>
                     </div>
 

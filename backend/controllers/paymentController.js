@@ -13,8 +13,8 @@ const processPayment = asyncErrorHandler(async (req, res, next) => {
       return_url:`${req.protocol}://${req.get("host")}/api/v1/payment/complete`,
       website_url: `${process.env.WEBSITE_URL}`,
       amount: totalPrice * 100, //paisa
-      purchase_order_id: "oid",
-      order_id: itemId,
+      purchase_order_id: "oid" + uuidv4(),
+      order_id: itemId + uuidv4(),
       purchase_order_name: name,
     };
 

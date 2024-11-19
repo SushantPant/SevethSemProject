@@ -25,13 +25,11 @@ const Payment = () => {
   );
 
   const paymentData = {
-    return_url: "http://localhost:4000/api/v1/payment/complete", //can be placed in backend
     itemId: cartItems[0].product,
     totalPrice: totalPrice,
     name: cartItems[0].name,
   };
 
-  
   //test data
 
   // const paymentData = {
